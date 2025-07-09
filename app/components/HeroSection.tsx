@@ -36,7 +36,7 @@ const HeroSection = () => {
                 index > 0 ? "-ml-4" : ""
               )}
             >
-              <AvatarImage src={avatar.imgUrl.src} />
+              <AvatarImage fetchPriority="high" src={avatar.imgUrl.src} />
               <AvatarFallback>{avatar.fallback}</AvatarFallback>
             </Avatar>
           ))}
