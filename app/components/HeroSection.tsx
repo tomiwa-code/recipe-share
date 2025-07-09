@@ -15,7 +15,7 @@ const HeroSection = () => {
   return (
     <div className="w-full h-auto md:h-[550px] flex-col flex items-center justify-center gap-y-5 pt-32">
       <div className="w-full mx-auto max-w-xl">
-        <h2 className="font-bold text-8xl text-black font-family-courgette text-center">
+        <h2 className="font-bold text-5xl md:text-8xl text-black font-family-courgette text-center">
           Simple and Tasty <span className="text-red-500">Recipes</span>
         </h2>
       </div>
@@ -26,7 +26,7 @@ const HeroSection = () => {
         veniam, quis nostrud exercitation
       </p>
 
-      <div className="flex items-center justify-center gap-x-2 -mt-2">
+      <div className="flex items-center flex-col gap-y-2 md:flex-row justify-center gap-x-2 -mt-2">
         <div className="flex items-center">
           {avatarsArr.map((avatar, index) => (
             <Avatar
@@ -42,9 +42,11 @@ const HeroSection = () => {
           ))}
         </div>
 
-        <p className="text-gray-500 text-xs md:text-sm">
-          <span className="font-semibold text-black">200+</span> people have
-          shared their recipes with us!
+        <p className="text-gray-500 text-xs md:text-sm flex flex-col items-center md:flex-row">
+          <span className="font-semibold text-black text-xl md:text-sm">
+            200+
+          </span>{" "}
+          people have shared their recipes with us!
         </p>
       </div>
     </div>

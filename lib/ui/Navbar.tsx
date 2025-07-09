@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Input } from "./Input";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "./Avatar";
@@ -10,16 +11,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./Dropdown";
-import { UserRound } from "lucide-react";
+import { CookingPot, UserRound, UsersRound } from "lucide-react";
+import { NavLinkType } from "@/types/nav.types";
+import MobileNav from "./MobileNav";
 
-const linksArr = [
+const linksArr: NavLinkType[] = [
   {
     label: "Recipes",
     href: "/recipes",
+    icon: <CookingPot size={20} />,
   },
   {
     label: "Community",
     href: "/community",
+    icon: <UsersRound size={20} />,
   },
 ];
 
@@ -39,7 +44,7 @@ const Navbar = () => {
           </h2>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 hidden lg:block">
           <div className="w-full max-w-xl bg-white/50 backdrop-blur-sm border border-gray rounded-xl">
             <Input
               type="text"
@@ -49,7 +54,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <nav className="flex items-center flex-1 gap-x-4 justify-end">
+        <nav className="items-center flex-1 gap-x-4 justify-end hidden lg:flex">
           <ul className="flex items-center gap-x-4">
             {linksArr.map((link, idx) => (
               <li key={idx}>
@@ -99,6 +104,9 @@ const Navbar = () => {
             </DropdownMenu>
           </ul>
         </nav>
+
+        {/* MOBILE  */}
+        <MobileNav isUser={isUser} linkArr={linksArr} />
       </div>
     </header>
   );

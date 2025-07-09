@@ -9,7 +9,7 @@ import Features from "./Features";
 
 const LandingPageWrapper = () => {
   return (
-    <main className="w-full relative min-h-screen">
+    <main className="w-full relative min-h-screen overflow-x-hidden">
       <div className="absolute left-0 top-0 bottom-0 right-0 z-0 bg-radial from-transparent to-black/10" />
 
       <div className="absolute top-0 z-0 left-1/2 -translate-x-1/2 w-[500px]">

@@ -48,16 +48,19 @@ const Features = () => {
         <p className="text-sm text-gray-500 uppercase tracking-widest">
           Features
         </p>
-        <h2 className="text-2xl w-full max-w-xl text-center mx-auto capitalize text-black font-semibold">
+        <h2 className="text-lg md:text-2xl w-full max-w-xl text-center mx-auto capitalize text-black font-semibold">
           Discover the amazing features of our recipe sharing platform.
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-28 gap-y-12 w-full mt-10 px-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 divide-y divide-gray-300 md:divide-none gap-x-28 gap-y-12 w-full mt-10 px-4 md:px-8 lg:px-20">
         {featuresArr.map((feature, idx) => {
           return (
-            <div className="flex gap-x-10" key={idx}>
-              <div className="relative size-32">
+            <div
+              className="flex flex-col lg:flex-row gap-y-0 gap-x-10 items-center pb-5 md:pb-0"
+              key={idx}
+            >
+              <div className="relative size-20 md:size-24 lg:size-28">
                 <Image
                   src={feature.icon}
                   alt={feature.title}
@@ -67,12 +70,12 @@ const Features = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-y-1">
-                <h2 className="text-2xl font-semibold text-black capitalize">
+              <div className="flex flex-col gap-y-1 flex-1 items-center lg:items-start">
+                <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-black capitalize">
                   {feature.title}
                 </h2>
 
-                <p className="text-gray-500 text-sm md:text-base">
+                <p className="text-gray-500 text-sm md:text-base text-center lg:text-left">
                   {feature.description}
                 </p>
               </div>
