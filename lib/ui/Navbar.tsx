@@ -34,7 +34,7 @@ const Navbar = () => {
   return (
     <header className="absolute z-50 top-0 left-0 right-0 pt-5">
       <div className="flex items-center justify-between container mx-auto py-6 px-4 md:px-8 lg:px-16">
-        <div className="flex-1 flex items-center gap-x-2">
+        <Link href={"/"} className="flex-1 flex items-center gap-x-2">
           <div className="bg-red-500 rounded-lg size-8 flex items-center justify-center">
             <p className="uppercase text-sm font-bold text-white">RS</p>
           </div>
@@ -42,7 +42,7 @@ const Navbar = () => {
           <h2 className="text-base font-semibold text-black capitalize">
             recipe share
           </h2>
-        </div>
+        </Link>
 
         <div className="flex-1 hidden lg:block">
           <div className="w-full max-w-xl bg-white/50 backdrop-blur-sm border border-gray rounded-xl">

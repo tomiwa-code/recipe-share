@@ -6,11 +6,12 @@ import Link from "next/link";
 import { Button } from "@/lib/ui/Button";
 import RecipesWrapper from "./RecipesWrapper";
 import Features from "./Features";
+import BackgroundEffect from "@/lib/ui/BackgroundEffect";
 
 const LandingPageWrapper = () => {
   return (
     <main className="w-full relative min-h-screen overflow-x-hidden">
-      <div className="absolute left-0 top-0 bottom-0 right-0 z-0 bg-radial from-transparent to-black/10" />
+      <BackgroundEffect />
 
       <div className="absolute top-0 z-0 left-1/2 -translate-x-1/2 w-[500px]">
         <Image

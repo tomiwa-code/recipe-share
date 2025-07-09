@@ -5,6 +5,8 @@ import avatar_4 from "../public/img/avatar_4.webp";
 import avatar_5 from "../public/img/avatar_5.webp";
 import ingredients_2 from "../public/img/ingredients_2.webp";
 import ingredients_1 from "../public/img/ingredients _1.webp";
+import grilledFish from "../public/img/grilled-fish.webp";
+import chicken from "../public/img/chicken.webp";
 
 export default {
   avatar_1,
@@ -14,4 +16,6 @@ export default {
   avatar_5,
   ingredients_1,
   ingredients_2,
+  grilledFish,
+  chicken,
 };
