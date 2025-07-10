@@ -1,6 +1,6 @@
 import React from "react";
 import { Input } from "@/lib/ui/Input";
-import { EyeClosed, Lock, UserRound } from "lucide-react";
+import { Lock, UserRound } from "lucide-react";
 import CustomLabel from "../../components/CustomLabel";
 import { Button } from "@/lib/ui/Button";
 import Link from "next/link";

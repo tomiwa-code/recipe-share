@@ -32,6 +32,7 @@ const linksArr: NavLinkType[] = [
 ];
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
   // Check if the current page is an auth page, if so, hide the navbar
   const { isAuthPage } = useCheckPage();
 
@@ -64,7 +65,7 @@ const Navbar = () => {
               </li>
             ))}
 
-            <DropdownMenu>
+            <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
               <DropdownMenuTrigger asChild>
                 <button className="cursor-pointer">
                   {!isUser ? (
@@ -87,17 +88,29 @@ const Navbar = () => {
                 {!isUser && (
                   <>
                     <DropdownMenuItem className="hover:bg-gray-200 duration-300">
-                      <Link href={"/auth/sign-in"}>Sign In</Link>
+                      <Link
+                        href={"/auth/sign-in"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Sign In
+                      </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem className="hover:bg-gray-200 duration-300">
-                      <Link href={"/auth/sign-up"}>Sign Up</Link>
+                      <Link
+                        href={"/auth/sign-up"}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Sign Up
+                      </Link>
                     </DropdownMenuItem>
                   </>
                 )}
                 {isUser && (
                   <>
                     <DropdownMenuItem>
-                      <Link href={"/profile"}>Profile</Link>
+                      <Link href={"/profile"} onClick={() => setIsOpen(false)}>
+                        Profile
+                      </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>Logout</DropdownMenuItem>
                   </>
