@@ -1,9 +1,19 @@
+"use client";
 import React from "react";
+
 import { getCurrentYear } from "../utils";
+import { useCheckPage } from "@/hooks/useCheckPage";
 
 const Footer = () => {
+  // Check if the current page is an auth page, if so, hide the footer
+  const { isAuthPage } = useCheckPage();
+
   return (
-    <footer className="w-full bg-black py-16 rounded-t-4xl">
+    <footer
+      className={`w-full bg-black py-16 rounded-t-4xl ${
+        isAuthPage ? "hidden" : ""
+      }`}
+    >
       <div className="container px-4 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>

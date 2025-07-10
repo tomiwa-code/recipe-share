@@ -7,6 +7,7 @@ import NutritionAndImage from "./NutritionAndImage";
 import IngredientsAndInstruction from "./IngredientsAndInstruction";
 import Reviews from "./Reviews";
 import YouMightAlsoLike from "./YouMightAlsoLike";
+import BackgroundEffect from "@/lib/ui/BackgroundEffect";
 
 interface RecipePageWrapper {
   id: string;
@@ -20,6 +21,8 @@ const RecipePageWrapper = ({ id }: RecipePageWrapper) => {
 
   return (
     <main className="min-h-screen w-full relative overflow-x-hidden">
+      <BackgroundEffect />
+
       <div className="container mx-auto px-4 pb-20 md:px-8 lg:px-16 relative z-10 pt-28 md:pt-32">
         {/* Link to go back to recipes page  */}
         <Link
