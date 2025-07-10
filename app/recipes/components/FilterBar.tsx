@@ -55,10 +55,10 @@ const FilterBar = () => {
             </div>
 
             <Select onValueChange={addFilter}>
-              <SelectTrigger className="w-40 bg-sage-50 border-sage-200">
+              <SelectTrigger className="w-40 bg-sage-50 border-black/30 bg-foreground/30">
                 <SelectValue placeholder="Cuisine" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white border-none">
                 {cuisines.map((cuisine) => (
                   <SelectItem key={cuisine} value={cuisine}>
                     {cuisine}
@@ -68,10 +68,10 @@ const FilterBar = () => {
             </Select>
 
             <Select onValueChange={addFilter}>
-              <SelectTrigger className="w-40 bg-sage-50 border-sage-200">
+              <SelectTrigger className="w-40 bg-sage-50 border-black/30 bg-foreground/30">
                 <SelectValue placeholder="Difficulty" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white border-none">
                 {difficulties.map((difficulty) => (
                   <SelectItem key={difficulty} value={difficulty}>
                     {difficulty}
@@ -81,10 +81,10 @@ const FilterBar = () => {
             </Select>
 
             <Select onValueChange={addFilter}>
-              <SelectTrigger className="w-40 bg-sage-50 border-sage-200">
+              <SelectTrigger className="w-40 bg-sage-50 border-black/30 bg-foreground/30">
                 <SelectValue placeholder="Cook Time" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bg-white border-none">
                 {cookTimes.map((time) => (
                   <SelectItem key={time} value={time}>
                     {time}
@@ -102,16 +102,16 @@ const FilterBar = () => {
                 <Badge
                   key={filter}
                   variant="secondary"
-                  className="bg-sage-100 text-sage-700 hover:bg-sage-200"
+                  className="bg-gray-100 text-black hover:bg-gray-200 py-1.5 rounded-full"
                 >
                   {filter}
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-4 w-4 ml-1 hover:bg-sage-300"
+                    className="size-4 ml-1 hover:bg-sage-300"
                     onClick={() => removeFilter(filter)}
                   >
-                    <X className="h-3 w-3" />
+                    <X className="size-3" />
                   </Button>
                 </Badge>
               ))}

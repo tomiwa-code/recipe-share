@@ -79,7 +79,7 @@ const Navbar = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-gray-100 border-none">
                 <DropdownMenuLabel>
-                  {isUser ? "My Account" : "Not a Member"}
+                  {isUser ? "My Account" : "Start sharing recipes"}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator className="bg-gray" />
                 {!isUser && (

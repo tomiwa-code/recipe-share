@@ -1,5 +1,6 @@
 import {
   Bookmark,
+  ChefHat,
   Clock,
   Copy,
   Dumbbell,
@@ -11,6 +12,7 @@ import React from "react";
 import { Button } from "./Button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip";
 import Link from "next/link";
+import IconUi from "./IconUi";
 
 interface RecipeCardProps {
   idx: number;
@@ -72,8 +74,13 @@ const RecipeCard = ({ idx }: RecipeCardProps) => {
           </div>
         </div>
 
+        <div className="flex items-center gap-x-2 text-sm text-gray-500 capitalize my-2.5">
+          <ChefHat size={16} />
+          <span>maleek berry</span> • <span>nigerian</span>
+        </div>
+
         <Link href={"/recipe/1"}>
-          <div className="flex items-center justify-center mt-5 w-full flex-col gap-y-3 px-5">
+          <div className="flex items-center justify-center w-full flex-col gap-y-3 px-5">
             <h2 className="text-black text-base md:text-lg lg:text-xl font-bold capitalize text-center">
               nigeria Jollof Rice
             </h2>
@@ -105,12 +112,3 @@ const RecipeCard = ({ idx }: RecipeCardProps) => {
 };
 
 export default RecipeCard;
-
-const IconUi = ({ icon, text }: { icon: React.ReactNode; text: string }) => {
-  return (
-    <div className="flex flex-col gap-y-2 items-center justify-center text-gray-500">
-      {icon}
-      <p className="font-medium text-black/80 text-sm">{text}</p>
-    </div>
-  );
-};

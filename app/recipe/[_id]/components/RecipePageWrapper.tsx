@@ -1,10 +1,12 @@
 import React from "react";
 import RecipeNotFound from "./RecipeNotFound";
-import BackgroundEffect from "@/lib/ui/BackgroundEffect";
-import FilterBar from "./FilterBar";
-import RecipeCard from "@/lib/ui/RecipeCard";
-import HeaderBgImages from "./HeaderBgImages";
-import RecipeRightSide from "./RecipeRightSide";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import RecipeHeroSection from "./RecipeHeroSection";
+import NutritionAndImage from "./NutritionAndImage";
+import IngredientsAndInstruction from "./IngredientsAndInstruction";
+import Reviews from "./Reviews";
+import YouMightAlsoLike from "./YouMightAlsoLike";
 
 interface RecipePageWrapper {
   id: string;
@@ -17,28 +19,20 @@ const RecipePageWrapper = ({ id }: RecipePageWrapper) => {
 
   return (
     <main className="min-h-screen w-full relative overflow-x-hidden">
-      <BackgroundEffect />
+      <div className="container mx-auto px-4 pb-20 md:px-8 lg:px-16 relative z-10 pt-32">
+        <Link
+          href="/recipes"
+          className="inline-flex items-center text-gray-500 hover:text-sage-800 mb-8 transition-colors"
+        >
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Recipes
+        </Link>
 
-      <HeaderBgImages />
-
-      <div className="container mx-auto px-4 pb-20 md:px-8 lg:px-16 relative z-10">
-        <div className="h-[300px] w-full flex items-center justify-center pt-32">
-          <h2 className="text-4xl md:text-6xl font-semibold capitalize font-family-courgette">
-            explore recipes
-          </h2>
-        </div>
-
-        <FilterBar />
-
-        <div className="w-full flex justify-between gap-x-16 mt-24">
-          <div className="w-full md:flex-3 grid grid-cols-3 gap-y-28 gap-x-8">
-            {Array.from({ length: 12 }).map((_, idx) => {
-              return <RecipeCard key={idx} idx={idx} />;
-            })}
-          </div>
-
-          <RecipeRightSide />
-        </div>
+        <RecipeHeroSection />
+        <NutritionAndImage />
+        <IngredientsAndInstruction />
+        <Reviews />
+        <YouMightAlsoLike />
       </div>
     </main>
   );

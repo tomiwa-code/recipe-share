@@ -39,7 +39,7 @@ const usersArr: UserArrType[] = [
   },
 ];
 
-const RecipeRightSide = () => {
+const RecipesRightSide = () => {
   return (
     <div className="flex-1 flex flex-col gap-y-8">
       <div className="rounded-xl bg-foreground/30 backdrop-blur-sm shadow-sm min-h-[350px] px-5 py-8">
@@ -126,4 +126,4 @@ const RecipeRightSide = () => {
   );
 };
 
-export default RecipeRightSide;
+export default RecipesRightSide;
