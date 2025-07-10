@@ -13,6 +13,7 @@ const LandingPageWrapper = () => {
     <main className="w-full relative min-h-screen overflow-x-hidden">
       <BackgroundEffect />
 
+      {/* Top Background Image  */}
       <div className="absolute top-0 z-0 left-1/2 -translate-x-1/2 w-[500px]">
         <Image
           src={images.ingredients_2.src}
@@ -22,6 +23,8 @@ const LandingPageWrapper = () => {
           priority
         />
       </div>
+
+      {/* Left side background image  */}
       <div className="absolute right-0 top-0 z-0">
         <Image
           src={images.ingredients_1.src}
@@ -33,12 +36,15 @@ const LandingPageWrapper = () => {
       </div>
 
       <div className="container mx-auto px-4 pb-20 md:px-8 lg:px-16 relative z-10">
+        {/* Hero Section  */}
         <section id="hero-section" className="mb-20">
           <HeroSection />
         </section>
 
         <section id="recipes-section" className="mb-16">
-          <RecipesWrapper />
+          <React.Suspense fallback={<div>Loading recipes...</div>}>
+            <RecipesWrapper />
+          </React.Suspense>
 
           <div className="w-full flex items-center justify-center mt-10">
             <Link href={"/recipes"}>

@@ -1,6 +1,7 @@
+import { IngredientsType, InstructionsType } from "@/types/recipe.type";
 import React from "react";
 
-const ingredientsArr = [
+const ingredientsArr: IngredientsType[] = [
   { id: 1, name: "Flour", quantity: "2 cups" },
   { id: 2, name: "Sugar", quantity: "1 cup" },
   { id: 3, name: "Butter", quantity: "1/2 cup" },
@@ -8,7 +9,7 @@ const ingredientsArr = [
   { id: 5, name: "Milk", quantity: "1 cup" },
 ];
 
-const instructionsArr = [
+const instructionsArr: InstructionsType[] = [
   { id: 1, step: "Preheat the oven to 350°F (175°C)." },
   { id: 2, step: "In a bowl, mix flour and sugar." },
   { id: 3, step: "Add butter and eggs, then mix well." },

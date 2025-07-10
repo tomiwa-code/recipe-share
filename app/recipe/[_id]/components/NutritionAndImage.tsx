@@ -4,8 +4,9 @@ import Image from "next/image";
 import { Button } from "@/lib/ui/Button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/lib/ui/Tooltip";
 import { Bookmark, Copy } from "lucide-react";
+import { RecipeNutritionType } from "@/types/recipe.type";
 
-const nutritionArr = [
+const nutritionArr: RecipeNutritionType[] = [
   { label: "Calories", value: "320" },
   { label: "Protein", value: "12g" },
   { label: "Carbohydrates", value: "45g" },

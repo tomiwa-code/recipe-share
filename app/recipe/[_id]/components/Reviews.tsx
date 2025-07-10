@@ -7,31 +7,44 @@ import { Button } from "@/lib/ui/Button";
 import { cn, formatRelativeTime, getInitials } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/lib/ui/Avatar";
 import images from "@/constants/images";
+import { ReviewType } from "@/types/recipe.type";
 
-const reviews = [
+const reviews: ReviewType[] = [
   {
-    id: 1,
-    author: "John Doe",
+    _id: "1",
+    user: {
+      _id: "1",
+      name: "John Doe",
+      avatar: images.avatar_1.src,
+    },
     rating: 5,
-    date: "2025-07-09T12:00:00Z",
+    createdAt: "2025-07-09T12:00:00Z",
     comment: "This recipe is amazing!",
-    avatar: images.avatar_1.src,
+    updatedAt: "2025-07-09T12:00:00Z",
   },
   {
-    id: 2,
-    author: "Jane Smith",
+    _id: "2",
+    user: {
+      _id: "2",
+      name: "Jane Smith",
+      avatar: images.avatar_2.src,
+    },
     rating: 4,
-    date: "2025-06-29T12:00:00Z",
+    createdAt: "2025-06-29T12:00:00Z",
     comment: "Really enjoyed this dish.",
-    avatar: images.avatar_2.src,
+    updatedAt: "2025-06-29T12:00:00Z",
   },
   {
-    id: 3,
-    author: "Bob Johnson",
+    _id: "3",
+    user: {
+      _id: "3",
+      name: "Bob Johnson",
+      avatar: images.avatar_3.src,
+    },
     rating: 3,
-    date: "2025-01-03T12:00:00Z",
+    createdAt: "2025-01-03T12:00:00Z",
     comment: "It was okay, not my favorite.",
-    avatar: images.avatar_3.src,
+    updatedAt: "2025-01-03T12:00:00Z",
   },
 ];
 
@@ -45,7 +58,7 @@ const Reviews = () => {
         <CardContent className="flex flex-col gap-y-6 divide-y divide-gray-200">
           {reviews.map((review, idx) => (
             <div
-              key={review.id}
+              key={review._id}
               className={cn(
                 "pb-4",
                 idx === reviews.length - 1 ? "pb-0 border-none" : ""
@@ -56,9 +69,9 @@ const Reviews = () => {
                   {/* Avatar section */}
                   <div className="flex items-center gap-x-2">
                     <Avatar className={"size-8 bg-gray-200"}>
-                      <AvatarImage src={review.avatar} />
+                      <AvatarImage src={review.user.avatar} />
                       <AvatarFallback className="uppercase">
-                        {getInitials(review.author)}
+                        {getInitials(review.user.name)}
                       </AvatarFallback>
                     </Avatar>
                   </div>
@@ -66,7 +79,7 @@ const Reviews = () => {
                   {/* Username and rating section  */}
                   <div className="flex md:items-center flex-col md:flex-row gap-x-2">
                     <span className="text-base font-medium text-black">
-                      {review.author}
+                      {review.user.name}
                     </span>
 
                     <div className="flex items-center">
@@ -86,12 +99,14 @@ const Reviews = () => {
 
                 {/* Date section */}
                 <span className="text-sm text-gray-500">
-                  {formatRelativeTime(review.date)}
+                  {formatRelativeTime(review.createdAt)}
                 </span>
               </div>
 
               {/* Reviews comment section */}
-              <p className="text-gray-500 text-sm md:text-base">{review.comment}</p>
+              <p className="text-gray-500 text-sm md:text-base">
+                {review.comment}
+              </p>
             </div>
           ))}
 

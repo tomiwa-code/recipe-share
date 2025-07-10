@@ -8,7 +8,7 @@ export const usersData: UserType[] = [
     name: "Sarah Johnson",
     username: "sarahJay",
     email: "sarah.johnson@example.com",
-    avatar: images.avatar_1.src,
+    avatar: images.avatar_4.src,
     bio: "Passionate home cook and food blogger. I love experimenting with seasonal ingredients and sharing family recipes that have been passed down through generations.",
     location: "San Francisco, CA",
     joinedDate: new Date(2023, 11, 21).toISOString(),
