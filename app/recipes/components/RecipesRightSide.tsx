@@ -41,8 +41,9 @@ const usersArr: UserArrType[] = [
 
 const RecipesRightSide = () => {
   return (
-    <div className="flex-1 flex flex-col gap-y-8">
-      <div className="rounded-xl bg-foreground/30 backdrop-blur-sm shadow-sm min-h-[350px] px-5 py-8">
+    <div className="flex-1 flex flex-col md:flex-row lg:flex-col md:justify-between lg:justify-normal gap-x-10 gap-y-8">
+      {/* Top 5 Users with the most recipes  */}
+      <div className="md:flex-1 lg:flex-none rounded-xl bg-foreground/30 backdrop-blur-sm shadow-sm min-h-[350px] px-5 py-8">
         <h2 className="text-lg md:text-xl font-semibold text-black capitalize">
           Top 5 User{" "}
           <span className="text-gray-400 font-normal text-sm">
@@ -76,7 +77,8 @@ const RecipesRightSide = () => {
         </div>
       </div>
 
-      <div className="rounded-xl bg-foreground/30 backdrop-blur-sm shadow-sm min-h-[350px] px-5 py-8">
+      {/* Top 5 Recipes Section */}
+      <div className="md:flex-1 lg:flex-none rounded-xl bg-foreground/30 backdrop-blur-sm shadow-sm min-h-[350px] px-5 py-8">
         <h2 className="text-lg md:text-xl font-semibold text-black capitalize">
           Top 5 Recipes{" "}
           <span className="text-gray-400 font-normal text-sm">

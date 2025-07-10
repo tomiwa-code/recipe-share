@@ -43,7 +43,7 @@ const FilterBar = () => {
 
   return (
     <div className="mt-8 py-4">
-      <div className="container px-4">
+      <div className="container md:px-4">
         <div className="flex flex-col space-y-4">
           {/* Filter Controls */}
           <div className="flex flex-wrap gap-4 items-center">
