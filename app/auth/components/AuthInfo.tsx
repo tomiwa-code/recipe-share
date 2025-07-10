@@ -31,7 +31,7 @@ const AuthInfo = () => {
   }, [isSignUpPage]);
 
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full max-w-lg hidden md:block">
       <div className="flex flex-col gap-y-1">
         <h2 className="text-lg md:text-2xl text-black font-semibold font-family-courgette capitalize">
           {isSignUpPage ? "create account" : "Sign in to get started"}

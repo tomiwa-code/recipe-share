@@ -7,7 +7,7 @@ import Logo from "@/lib/ui/Logo";
 
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="relative bg-black min-h-screen">
+    <div className="relative bg-black min-h-screen overflow-x-hidden">
       <div className="absolute z-0 inset-0 opacity-90">
         <Image
           src={bg.auth_bg_img}

@@ -12,9 +12,9 @@ interface AuthWrapperProps {
 const AuthWrapper = ({ children }: AuthWrapperProps) => {
   return (
     <main className="w-full relative overflow-x-hidden">
-      <div className="relative z-10 container mx-auto px-4 md:px-8 lg:px-16 pt-16 gap-y-8 flex flex-col min-h-[80vh] justify-center">
-        <div className="flex items-center gap-x-28">
-          <div className="w-full max-w-md md:min-h-[500px] justify-center flex-col flex shadow-lg bg-foreground px-10 py-8">
+      <div className="relative z-10 container mx-auto px-4 md:px-8 pt-8 lg:px-16 md:pt-16 gap-y-8 flex flex-col min-h-[85vh] md:min-h-[80vh] justify-center pb-20 md:pb-0">
+        <div className="flex flex-col md:flex-row gap-y-8 items-center md:gap-x-8 lg:gap-x-20 2xl:gap-x-28">
+          <div className="w-full md:max-w-md md:min-h-[500px] justify-center flex-col flex shadow-lg px-6 bg-foreground md:px-8 lg:px-10 py-8">
             <div className="w-full">
               <Button className="w-full rounded-full h-12 bg-white">
                 <GoogleIcon />

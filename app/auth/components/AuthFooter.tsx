@@ -29,7 +29,7 @@ const iconsArr = [
 
 const AuthFooter = () => {
   return (
-    <footer className="container mx-auto px-4 md:px-8 lg:px-16 absolute bottom-5 left-1/2  -translate-x-1/2">
+    <footer className="container mx-auto px-4 md:px-8 lg:px-16 absolute bottom-5 left-1/2 hidden md:block -translate-x-1/2">
       <div className="w-full min-h-14 flex items-center justify-between bg-foreground/30 backdrop-blur-sm rounded-full px-8">
         <div className="flex items-center gap-x-8">
           {linkArr.map((link, idx) => (
