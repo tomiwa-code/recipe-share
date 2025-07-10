@@ -5,6 +5,7 @@ import NextTopLoader from "nextjs-toploader";
 import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
 import ScrollToTop from "@/lib/ui/ScrollToTop";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -34,11 +35,13 @@ export default function RootLayout({
       <body
         className={`${poppins.className} ${courgette.variable} antialiased`}
       >
-        <NextTopLoader showSpinner={false} color="#fb2c36" />
-        <Navbar />
-        {children}
-        <ScrollToTop />
-        <Footer />
+        <NuqsAdapter>
+          <NextTopLoader showSpinner={false} color="#fb2c36" />
+          <Navbar />
+          {children}
+          <ScrollToTop />
+          <Footer />
+        </NuqsAdapter>
       </body>
     </html>
   );
