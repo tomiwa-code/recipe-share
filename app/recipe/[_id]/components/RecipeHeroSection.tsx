@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import React from "react";
 
+// List of recipe hero section icons and their text
 const IconArr = [
   {
     icon: <Clock className="size-5 text-gray-500" />,
@@ -39,7 +40,7 @@ const IconArr = [
 
 const RecipeHeroSection = () => {
   return (
-    <div className="pt-12 w-full flex-col items-center justify-center">
+    <div className="md:pt-12 w-full flex-col items-center justify-center">
       <div className="w-full max-w-xl relative mx-auto gap-y-4 flex-col flex items-center justify-center">
         <h2 className="text-3xl font-bold text-center capitalize">
           Chocolate Lava Cake
@@ -50,6 +51,7 @@ const RecipeHeroSection = () => {
           date night.
         </p>
 
+        {/* Dynamic rendering of icons */}
         <div className="flex items-center flex-wrap gap-y-3 justify-center gap-x-8">
           {IconArr.map((item, idx) => {
             return (

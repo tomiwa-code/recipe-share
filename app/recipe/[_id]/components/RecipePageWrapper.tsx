@@ -13,13 +13,15 @@ interface RecipePageWrapper {
 }
 
 const RecipePageWrapper = ({ id }: RecipePageWrapper) => {
+  // If recipe id is not found, return a Recipe not found component
   if (!id) {
     return <RecipeNotFound />;
   }
 
   return (
     <main className="min-h-screen w-full relative overflow-x-hidden">
-      <div className="container mx-auto px-4 pb-20 md:px-8 lg:px-16 relative z-10 pt-32">
+      <div className="container mx-auto px-4 pb-20 md:px-8 lg:px-16 relative z-10 pt-28 md:pt-32">
+        {/* Link to go back to recipes page  */}
         <Link
           href="/recipes"
           className="inline-flex items-center text-gray-500 hover:text-sage-800 mb-8 transition-colors"

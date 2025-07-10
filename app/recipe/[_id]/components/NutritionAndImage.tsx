@@ -16,7 +16,8 @@ const nutritionArr = [
 
 const NutritionAndImage = () => {
   return (
-    <div className="w-full max-w-5xl mx-auto mt-16">
+    <div className="w-full max-w-5xl mx-auto mt-10 md:mt-16">
+      {/* Button to save recipe and copy link to clipboard  */}
       <div className="flex-1 flex items-center justify-end w-full mb-4 gap-x-2">
         <Button
           variant={"outline"}
@@ -38,8 +39,9 @@ const NutritionAndImage = () => {
         </Tooltip>
       </div>
 
-      <div className="w-full flex gap-x-16 bg-foreground">
-        <div className="flex-1 pl-10 py-5">
+      {/* Nutrition and image section  */}
+      <div className="w-full flex-col-reverse md:flex-row gap-y-4 flex gap-x-16 bg-foreground">
+        <div className="flex-1 px-4 md:pl-10 py-5">
           <div className="flex flex-col gap-y-0.5">
             <h2 className="font-semibold text-black text-sm md:text-base uppercase">
               Nutrition Facts

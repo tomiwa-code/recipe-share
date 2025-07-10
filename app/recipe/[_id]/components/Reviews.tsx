@@ -37,8 +37,8 @@ const reviews = [
 
 const Reviews = () => {
   return (
-    <div className="w-full max-w-5xl mx-auto mt-16">
-      <Card className="border-none bg-foreground px-5 py-8">
+    <div className="w-full max-w-5xl mx-auto mt-10 md:mt-16">
+      <Card className="border-none bg-foreground md:px-5 py-8">
         <CardHeader>
           <CardTitle>Reviews (316)</CardTitle>
         </CardHeader>
@@ -51,8 +51,9 @@ const Reviews = () => {
                 idx === reviews.length - 1 ? "pb-0 border-none" : ""
               )}
             >
-              <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-x-2">
+              <div className="flex items-center justify-between mb-3 md:mb-2">
+                <div className="flex items-center gap-x-3">
+                  {/* Avatar section */}
                   <div className="flex items-center gap-x-2">
                     <Avatar className={"size-8 bg-gray-200"}>
                       <AvatarImage src={review.avatar} />
@@ -60,30 +61,37 @@ const Reviews = () => {
                         {getInitials(review.author)}
                       </AvatarFallback>
                     </Avatar>
+                  </div>
 
-                    <span className="font-medium text-black">
+                  {/* Username and rating section  */}
+                  <div className="flex md:items-center flex-col md:flex-row gap-x-2">
+                    <span className="text-base font-medium text-black">
                       {review.author}
                     </span>
-                  </div>
 
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`h-4 w-4 ${
-                          i < review.rating
-                            ? "text-black fill-current"
-                            : "text-sage-300"
-                        }`}
-                      />
-                    ))}
+                    <div className="flex items-center">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`size-3 md:size-4 ${
+                            i < review.rating
+                              ? "text-black fill-current"
+                              : "text-sage-300"
+                          }`}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
+
+                {/* Date section */}
                 <span className="text-sm text-gray-500">
                   {formatRelativeTime(review.date)}
                 </span>
               </div>
-              <p className="text-gray-500">{review.comment}</p>
+
+              {/* Reviews comment section */}
+              <p className="text-gray-500 text-sm md:text-base">{review.comment}</p>
             </div>
           ))}
 

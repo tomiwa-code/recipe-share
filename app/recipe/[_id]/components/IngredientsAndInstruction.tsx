@@ -20,8 +20,9 @@ const instructionsArr = [
 
 const IngredientsAndInstruction = () => {
   return (
-    <div className="w-full max-w-5xl mx-auto mt-16">
-      <div className="flex justify-between gap-x-10 gap-y-8">
+    <div className="w-full max-w-5xl mx-auto mt-10 md:mt-16">
+      <div className="flex flex-col md:flex-row justify-between gap-x-10 gap-y-8">
+        {/* Ingredients section */}
         <div className="flex-1 px-8 py-6 bg-foreground/30 rounded-xl backdrop-blur-sm shadow-sm">
           <h2 className="font-semibold text-black text-sm md:text-base uppercase">
             ingredients
@@ -39,6 +40,7 @@ const IngredientsAndInstruction = () => {
           </div>
         </div>
 
+        {/* Instructions section */}
         <div className="flex-1 px-8 py-6 bg-foreground/30 rounded-xl backdrop-blur-sm shadow-sm">
           <h2 className="font-semibold text-black text-sm md:text-base uppercase">
             Instructions
@@ -50,7 +52,9 @@ const IngredientsAndInstruction = () => {
                 <div className="flex items-center justify-center size-8 bg-red-400 text-white rounded-full">
                   <span>{item.id}</span>
                 </div>
-                <span className="text-base text-gray-500">{item.step}</span>
+                <span className="flex-1 text-sm md:text-base text-gray-500">
+                  {item.step}
+                </span>
               </div>
             ))}
           </div>
