@@ -62,7 +62,7 @@ const StepsNavigation: React.FC<StepsNavigationProps> = ({
       setStep(1 as 1 | 2 | 3 | 4);
     } catch (error) {
       toast.error("Failed to create recipe", {
-        description: "Failed to create recipe. Please try again.",
+        description: `Failed to create recipe. Please try again. ${error}`,
       });
     } finally {
       setIsSubmitting(false);

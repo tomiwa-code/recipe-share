@@ -111,7 +111,7 @@ const InstructionsStep: React.FC<InstructionsStepProps> = ({
           </h3>
 
           <div className="space-y-4">
-            {formData.instructions.map((instruction, index) => (
+            {formData.instructions.map((instruction) => (
               <div
                 key={instruction.id}
                 className="flex gap-4 p-4 border border-gray-200 rounded-lg"
