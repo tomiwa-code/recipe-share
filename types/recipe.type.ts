@@ -40,6 +40,7 @@ export type ReviewType = {
   createdAt: string;
   updatedAt: string;
   user: RecipeUserType;
+  title?: string;
 };
 
 export type RecipeUserType = {
@@ -48,3 +49,5 @@ export type RecipeUserType = {
   avatar: string;
   location?: string;
 };
+
+export type ReviewStats = Record<number, number>;

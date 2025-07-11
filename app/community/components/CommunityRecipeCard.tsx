@@ -12,17 +12,23 @@ import {
 import Link from "next/link";
 import IconUi from "../../../lib/ui/IconUi";
 import { Avatar, AvatarFallback, AvatarImage } from "@/lib/ui/Avatar";
-import { getInitials } from "../../../lib/utils";
+import { cn, getInitials } from "../../../lib/utils";
 import images from "@/constants/images";
 import RecipeCardFooter from "./RecipeCardFooter";
 
 interface CommunityRecipeCardProps {
   idx: number;
+  className?: string;
 }
 
-const CommunityRecipeCard = ({ idx }: CommunityRecipeCardProps) => {
+const CommunityRecipeCard = ({ idx, className }: CommunityRecipeCardProps) => {
   return (
-    <div className="relative bg-foreground/30 backdrop-blur-sm shadow-sm rounded-2xl py-5 px-6">
+    <div
+      className={cn(
+        "relative bg-foreground/30 backdrop-blur-sm shadow-sm rounded-2xl py-5 px-6",
+        className
+      )}
+    >
       <div className="flex gap-x-6">
         {/* Recipe Image  */}
         <Link href={"/community/1"}>

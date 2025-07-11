@@ -1,4 +1,4 @@
-import RecipeNotFound from "./RecipeNotFound";
+import RecipeNotFound from "@/lib/ui/RecipeNotFound";
 import RecipeHeroSection from "./RecipeHeroSection";
 import NutritionAndImage from "./NutritionAndImage";
 import IngredientsAndInstruction from "./IngredientsAndInstruction";
