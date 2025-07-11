@@ -5,7 +5,8 @@ import { Textarea } from "@/lib/ui/Textarea";
 import { Label } from "@/lib/ui/Label";
 import { Upload, X } from "lucide-react";
 import { RecipeFormDataType } from "@/types/recipe.type";
-import CustomSelect from "./CustomSelect";
+import CustomSelect from "@/lib/ui/CustomSelect";
+import { cuisinesArr } from "@/data";
 
 interface BasicInfoStepProps {
   formData: RecipeFormDataType;
@@ -15,19 +16,6 @@ interface BasicInfoStepProps {
 const labelStyle = "capitalize text-gray-500 text-sm";
 const inputStyles = "capitalize rounded-md border-gray-600 h-12";
 const difficultyOptions = ["easy", "medium", "hard"];
-const cuisinesArr = [
-  "african",
-  "italian",
-  "chinese",
-  "mexican",
-  "indian",
-  "french",
-  "japanese",
-  "thai",
-  "american",
-  "mediterranean",
-  "other",
-].sort((a, b) => a.localeCompare(b));
 
 const BasicInfoStep: React.FC<BasicInfoStepProps> = ({
   formData,

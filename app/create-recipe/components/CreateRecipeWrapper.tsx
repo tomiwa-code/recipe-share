@@ -24,6 +24,8 @@ const STEPS: StepsType[] = [
 
 const stepsArr = [1, 2, 3, 4] as const;
 
+// TODO:: Make this page responsive
+
 const CreateRecipeWrapper = () => {
   // Using nuqs for query state management
   const [step, setStep] = useQueryState(

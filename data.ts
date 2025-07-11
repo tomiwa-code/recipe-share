@@ -111,3 +111,17 @@ export const reviewsArr: ReviewType[] = [
     updatedAt: "2025-01-03T12:00:00Z",
   },
 ];
+
+export const cuisinesArr = [
+  "african",
+  "italian",
+  "chinese",
+  "mexican",
+  "indian",
+  "french",
+  "japanese",
+  "thai",
+  "american",
+  "mediterranean",
+  "other",
+].sort((a, b) => a.localeCompare(b));

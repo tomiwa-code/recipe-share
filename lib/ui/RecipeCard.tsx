@@ -89,6 +89,10 @@ const RecipeCard = ({ idx }: RecipeCardProps) => {
               nigeria Jollof Rice
             </h2>
 
+            <p className="text-sm font-medium -mt-2 text-gray-600 capitalize">
+              (african)
+            </p>
+
             <p className="text-sm text-center text-gray-500 w-full">
               A delicious and spicy rice dish from Nigeria, made with tomatoes,
               onions, and a blend of spices.

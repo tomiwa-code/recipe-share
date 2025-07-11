@@ -4,7 +4,7 @@ import { Input } from "@/lib/ui/Input";
 import { Label } from "@/lib/ui/Label";
 import { Plus, Trash2, GripVertical } from "lucide-react";
 import { RecipeFormDataType } from "@/types/recipe.type";
-import CustomSelect from "./CustomSelect";
+import CustomSelect from "@/lib/ui/CustomSelect";
 
 interface IngredientsStepProps {
   formData: RecipeFormDataType;

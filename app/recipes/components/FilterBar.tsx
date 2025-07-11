@@ -4,27 +4,13 @@ import { useState } from "react";
 import { Filter, X } from "lucide-react";
 import { Button } from "@/lib/ui/Button";
 import { Badge } from "@/lib/ui/Badge";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/lib/ui/Select";
+import { cuisinesArr } from "@/data";
+import CustomSelect from "@/lib/ui/CustomSelect";
 
 const FilterBar = () => {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
 
-  const cuisines = [
-    "Italian",
-    "Mexican",
-    "Asian",
-    "Mediterranean",
-    "American",
-    "Indian",
-    "French",
-  ];
-  const difficulties = ["Easy", "Medium", "Hard"];
+  const difficulties = ["easy", "medium", "hard"];
   const cookTimes = ["Under 30 min", "30-60 min", "1-2 hours", "2+ hours"];
 
   const addFilter = (filter: string) => {
@@ -54,44 +40,29 @@ const FilterBar = () => {
               </span>
             </div>
 
-            <Select onValueChange={addFilter}>
-              <SelectTrigger className="w-40 bg-sage-50 border-black/30 bg-foreground/30">
-                <SelectValue placeholder="Cuisine" />
-              </SelectTrigger>
-              <SelectContent className="bg-white border-none">
-                {cuisines.map((cuisine) => (
-                  <SelectItem key={cuisine} value={cuisine}>
-                    {cuisine}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <CustomSelect
+              className="border-none"
+              selectItems={cuisinesArr}
+              onChange={addFilter}
+              value={"african"}
+              defaultValue="Cuisine"
+            />
 
-            <Select onValueChange={addFilter}>
-              <SelectTrigger className="w-40 bg-sage-50 border-black/30 bg-foreground/30">
-                <SelectValue placeholder="Difficulty" />
-              </SelectTrigger>
-              <SelectContent className="bg-white border-none">
-                {difficulties.map((difficulty) => (
-                  <SelectItem key={difficulty} value={difficulty}>
-                    {difficulty}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <CustomSelect
+              className="border-none"
+              selectItems={difficulties}
+              onChange={addFilter}
+              value={"easy"}
+              defaultValue="Difficulty"
+            />
 
-            <Select onValueChange={addFilter}>
-              <SelectTrigger className="w-40 bg-sage-50 border-black/30 bg-foreground/30">
-                <SelectValue placeholder="Cook Time" />
-              </SelectTrigger>
-              <SelectContent className="bg-white border-none">
-                {cookTimes.map((time) => (
-                  <SelectItem key={time} value={time}>
-                    {time}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <CustomSelect
+              className="border-none"
+              selectItems={cookTimes}
+              onChange={addFilter}
+              value={"Under 30 min"}
+              defaultValue="Cook Time"
+            />
           </div>
 
           {/* Active Filters */}

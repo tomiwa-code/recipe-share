@@ -49,9 +49,15 @@ const CommunityRecipeCard = ({ idx, className }: CommunityRecipeCardProps) => {
           <div className="flex items-center justify-between w-full">
             {/* Recipe Title and Rating  */}
             <div className="flex flex-col gap-y-2">
-              <h2 className="text-black text-base md:text-lg lg:text-xl font-bold capitalize text-center">
-                nigeria Jollof Rice
-              </h2>
+              <div className="flex items-center gap-x-2">
+                <h2 className="text-black text-base md:text-lg lg:text-xl font-bold capitalize text-center">
+                  nigeria Jollof Rice
+                </h2>
+
+                <p className="text-sm font-medium text-gray-600 capitalize">
+                  (african)
+                </p>
+              </div>
 
               <div className="flex-2 flex gap-x-1">
                 {[0, 1, 2, 3, 4].map((_, idx) => {

@@ -31,7 +31,7 @@ const CustomSelect = ({
       >
         <SelectValue placeholder={defaultValue} />
       </SelectTrigger>
-      <SelectContent className="bg-white border-gray-600">
+      <SelectContent className="bg-white border-gray-600 border-none">
         {selectItems.map((option) => {
           return (
             <SelectItem
