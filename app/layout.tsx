@@ -6,6 +6,7 @@ import Navbar from "@/lib/ui/Navbar";
 import Footer from "@/lib/ui/Footer";
 import ScrollToTop from "@/lib/ui/ScrollToTop";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { Toaster } from "sonner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default function RootLayout({
       >
         <NuqsAdapter>
           <NextTopLoader showSpinner={false} color="#fb2c36" />
+          <Toaster position="bottom-right" richColors />
           <Navbar />
           {children}
           <ScrollToTop />
