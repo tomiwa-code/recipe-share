@@ -1,4 +1,4 @@
-import { Label } from "@/lib/ui/Lable";
+import { Label } from "@/lib/ui/Label";
 import React from "react";
 
 const CustomLabel = ({

@@ -8,18 +8,13 @@ export type RecipeCardType = {
   serving: number;
   reviews: number;
   comments: number;
-  creatorBy: RecipeCardType;
+  creatorBy: RecipeUserType;
   savedBy: string[];
   imageUrl: string;
   createdAt: string;
   updatedAt: string;
   nutrition: RecipeNutritionType[];
   ingredients: IngredientsType[];
-};
-
-export type RecipeCreatorType = {
-  name: string;
-  location: string;
 };
 
 export type RecipeNutritionType = {
@@ -44,9 +39,12 @@ export type ReviewType = {
   comment: string;
   createdAt: string;
   updatedAt: string;
-  user: {
-    _id: string;
-    name: string;
-    avatar: string;
-  };
+  user: RecipeUserType;
+};
+
+export type RecipeUserType = {
+  _id: string;
+  name: string;
+  avatar: string;
+  location?: string;
 };

@@ -22,6 +22,7 @@ const RecipeCard = ({ idx }: RecipeCardProps) => {
   return (
     <div className="relative bg-foreground/30 backdrop-blur-sm shadow-sm rounded-2xl min-h-[300px] pb-8">
       <div className="flex w-full flex-col items-center justify-center">
+        {/* Recipe Image  */}
         <Link href={"/recipe/1"}>
           <div className="size-44 rounded-full relative shadow-lg -mt-16 hover:-mt-18 transition-all duration-300 ease-in-out">
             <Image
@@ -37,6 +38,7 @@ const RecipeCard = ({ idx }: RecipeCardProps) => {
         </Link>
 
         <div className="w-full flex items-center justify-center mt-4">
+          {/* Rating  */}
           <div className="flex-2 flex items-center gap-x-1 justify-center">
             {[0, 1, 2, 3, 4].map((_, idx) => {
               return (
@@ -49,6 +51,7 @@ const RecipeCard = ({ idx }: RecipeCardProps) => {
             })}
           </div>
 
+          {/* Actions  */}
           <div className="flex-1 flex items-center justify-center">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -74,6 +77,7 @@ const RecipeCard = ({ idx }: RecipeCardProps) => {
           </div>
         </div>
 
+        {/* Chef and Cuisine Info  */}
         <div className="flex items-center gap-x-2 text-sm text-gray-500 capitalize my-2.5">
           <ChefHat size={16} />
           <span>maleek berry</span> • <span>nigerian</span>
@@ -92,6 +96,7 @@ const RecipeCard = ({ idx }: RecipeCardProps) => {
           </div>
         </Link>
 
+        {/* Icon lists  */}
         <div className="mt-8 flex items-center justify-between px-8 w-full">
           <IconUi
             icon={<Clock className="size-5 text-gray-500" />}

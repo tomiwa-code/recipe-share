@@ -42,6 +42,7 @@ const LandingPageWrapper = () => {
         </section>
 
         <section id="recipes-section" className="mb-16">
+          {/* Render Loading Ui while fetching recipes from server */}
           <React.Suspense fallback={<div>Loading recipes...</div>}>
             <RecipesWrapper />
           </React.Suspense>
