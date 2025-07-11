@@ -1,17 +1,15 @@
 "use client";
-import React, { useState } from "react";
-import { Button } from "@/lib/ui/Button";
+import React, { useMemo, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/lib/ui/Card";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { toast } from "sonner";
 import BackgroundEffect from "@/lib/ui/BackgroundEffect";
 import { parseAsNumberLiteral, useQueryState } from "nuqs";
 import StepWrapper from "./StepWrapper";
-import { RecipeFormDataType, StepsType } from "@/types/create-recipe.type";
-import { BasicInfoStep } from "./BasicInfoStep";
-import { IngredientsStep } from "./IngredientsStep";
-import { InstructionsStep } from "./InstructionsStep";
-import { ReviewStep } from "./ReviewStep";
+import BasicInfoStep from "./BasicInfoStep";
+import IngredientsStep from "./IngredientsStep";
+import InstructionsStep from "./InstructionsStep";
+import ReviewStep from "./ReviewStep";
+import { RecipeFormDataType, StepsType } from "@/types/recipe.type";
+import StepsNavigation from "./StepsNavigation";
 
 const STEPS: StepsType[] = [
   { id: 1, title: "Basic Info", description: "Recipe details and image" },
@@ -32,7 +30,6 @@ const CreateRecipeWrapper = () => {
     "step",
     parseAsNumberLiteral(stepsArr).withDefault(1)
   );
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState<RecipeFormDataType>({
     title: "",
@@ -40,7 +37,6 @@ const CreateRecipeWrapper = () => {
     cuisine: "",
     difficulty: "",
     prepTime: 0,
-    cookTime: 0,
     servings: 1,
     image: null,
     imagePreview: "",
@@ -49,74 +45,28 @@ const CreateRecipeWrapper = () => {
     tags: [],
   });
 
+  const stepOneIsCompleted = useMemo(() => {
+    return (
+      formData.title.trim().length > 0 &&
+      formData.description.trim().length > 0 &&
+      formData.cuisine.trim().length > 0 &&
+      formData.difficulty.trim().length > 0 &&
+      formData.servings > 0 &&
+      formData.prepTime > 0 &&
+      formData.image !== null
+    );
+  }, [formData]);
+
+  const stepTwoIsCompleted = useMemo(() => {
+    return formData.ingredients.length > 0;
+  }, [formData]);
+
+  const stepThreeIsCompleted = useMemo(() => {
+    return formData.instructions.length > 0;
+  }, [formData]);
+
   const updateFormData = (updates: Partial<RecipeFormDataType>) => {
     setFormData((prev) => ({ ...prev, ...updates }));
-  };
-
-  const nextStep = () => {
-    if (step < STEPS.length) {
-      setStep((step + 1) as 1 | 2 | 3 | 4);
-    }
-  };
-  const prevStep = () => {
-    if (step > 1) {
-      setStep((step - 1) as 1 | 2 | 3 | 4);
-    }
-  };
-
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      toast.success("Recipe Created", {
-        description: "Your recipe has been created successfully.",
-      });
-
-      // Reset form or redirect
-      setFormData({
-        title: "",
-        description: "",
-        cuisine: "",
-        difficulty: "",
-        prepTime: 0,
-        cookTime: 0,
-        servings: 1,
-        image: null,
-        imagePreview: "",
-        ingredients: [],
-        instructions: [],
-        tags: [],
-      });
-      setStep(1 as 1 | 2 | 3 | 4);
-    } catch (error) {
-      toast.error("Failed to create recipe", {
-        description: "Failed to create recipe. Please try again.",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const isStepValid = () => {
-    switch (step) {
-      case 1:
-        return (
-          formData.title &&
-          formData.description &&
-          formData.cuisine &&
-          formData.difficulty
-        );
-      case 2:
-        return formData.ingredients.length > 0;
-      case 3:
-        return formData.instructions.length > 0;
-      case 4:
-        return true;
-      default:
-        return false;
-    }
   };
 
   const renderStep = () => {
@@ -126,25 +76,44 @@ const CreateRecipeWrapper = () => {
           <BasicInfoStep formData={formData} updateFormData={updateFormData} />
         );
       case 2:
-        return (
+        return !stepOneIsCompleted ? null : (
           <IngredientsStep
             formData={formData}
             updateFormData={updateFormData}
           />
         );
       case 3:
-        return (
+        return !stepTwoIsCompleted ? null : (
           <InstructionsStep
             formData={formData}
             updateFormData={updateFormData}
           />
         );
       case 4:
-        return <ReviewStep formData={formData} />;
+        return !stepThreeIsCompleted ? null : (
+          <ReviewStep formData={formData} />
+        );
       default:
         return null;
     }
   };
+
+  // Disable future steps if previous steps are not completed
+  React.useEffect(() => {
+    if (step === 2 && !stepOneIsCompleted) {
+      setStep(1);
+    } else if (step === 3 && !stepTwoIsCompleted) {
+      setStep(2);
+    } else if (step === 4 && !stepThreeIsCompleted) {
+      setStep(3);
+    }
+  }, [
+    step,
+    stepOneIsCompleted,
+    stepTwoIsCompleted,
+    stepThreeIsCompleted,
+    setStep,
+  ]);
 
   return (
     <main className="min-h-screen w-full relative overflow-x-hidden pt-32 pb-20">
@@ -161,49 +130,24 @@ const CreateRecipeWrapper = () => {
         </div>
 
         {/* STEPS */}
-        <StepWrapper STEPS={STEPS} step={step} />
+        <StepWrapper STEPS={STEPS} step={step} setStep={setStep} />
 
         {/* Form Content */}
-        <Card>
+        <Card className="border-none shadow-none bg-white">
           <CardHeader>
-            <CardTitle>{STEPS[step ?? 1 - 1].title}</CardTitle>
+            <CardTitle>{STEPS[step - 1].title}</CardTitle>
           </CardHeader>
-          <CardContent>{renderStep()}</CardContent>
+          <CardContent className="min-h-52">{renderStep()}</CardContent>
         </Card>
 
         {/* Navigation */}
-        <div className="flex justify-between mt-8">
-          <Button
-            variant="outline"
-            onClick={prevStep}
-            disabled={step === 1}
-            className="flex items-center gap-2"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            Previous
-          </Button>
-
-          <div className="flex gap-2">
-            {step ?? 1 < STEPS.length ? (
-              <Button
-                onClick={nextStep}
-                disabled={!isStepValid()}
-                className="flex items-center gap-2"
-              >
-                Next
-                <ChevronRight className="w-4 h-4" />
-              </Button>
-            ) : (
-              <Button
-                onClick={handleSubmit}
-                disabled={!isStepValid() || isSubmitting}
-                className="flex items-center gap-2"
-              >
-                {isSubmitting ? "Publishing..." : "Publish Recipe"}
-              </Button>
-            )}
-          </div>
-        </div>
+        <StepsNavigation
+          step={step}
+          setStep={setStep}
+          formData={formData}
+          setFormData={setFormData}
+          stepsLength={STEPS.length}
+        />
       </div>
     </main>
   );

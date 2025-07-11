@@ -2,15 +2,9 @@ import React, { useState } from "react";
 import { Button } from "@/lib/ui/Button";
 import { Input } from "@/lib/ui/Input";
 import { Label } from "@/lib/ui/Label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/lib/ui/Select";
 import { Plus, Trash2, GripVertical } from "lucide-react";
-import { RecipeFormDataType } from "@/types/create-recipe.type";
+import { RecipeFormDataType } from "@/types/recipe.type";
+import CustomSelect from "./CustomSelect";
 
 interface IngredientsStepProps {
   formData: RecipeFormDataType;
@@ -34,8 +28,10 @@ const COMMON_UNITS = [
   "cloves",
   "to taste",
 ];
+const labelStyle = "capitalize text-gray-500 text-sm";
+const inputStyles = "rounded-md border-gray-600 h-10";
 
-export const IngredientsStep: React.FC<IngredientsStepProps> = ({
+const IngredientsStep: React.FC<IngredientsStepProps> = ({
   formData,
   updateFormData,
 }) => {
@@ -89,58 +85,59 @@ export const IngredientsStep: React.FC<IngredientsStepProps> = ({
         <h3 className="text-lg font-semibold mb-4">Add Ingredients</h3>
 
         {/* Add new ingredient form */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 border rounded-lg bg-muted/20">
-          <div className="md:col-span-6">
-            <Label htmlFor="ingredient-name">Ingredient Name</Label>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-5 border rounded-lg border-gray-200">
+          <div className="md:col-span-6 space-y-1">
+            <Label htmlFor="ingredient-name" className={labelStyle}>
+              Ingredient Name
+            </Label>
             <Input
               id="ingredient-name"
               placeholder="e.g., All-purpose flour"
               value={newIngredient.name}
+              className={inputStyles}
               onChange={(e) =>
                 setNewIngredient({ ...newIngredient, name: e.target.value })
               }
-              onKeyPress={handleKeyPress}
+              onKeyUp={handleKeyPress}
             />
           </div>
 
-          <div className="md:col-span-3">
-            <Label htmlFor="ingredient-amount">Amount</Label>
+          <div className="md:col-span-3 space-y-1">
+            <Label className={labelStyle} htmlFor="ingredient-amount">
+              Amount
+            </Label>
             <Input
               id="ingredient-amount"
               placeholder="e.g., 2"
               value={newIngredient.amount}
+              className={inputStyles}
               onChange={(e) =>
                 setNewIngredient({ ...newIngredient, amount: e.target.value })
               }
-              onKeyPress={handleKeyPress}
+              onKeyUp={handleKeyPress}
             />
           </div>
 
-          <div className="md:col-span-2">
-            <Label htmlFor="ingredient-unit">Unit</Label>
-            <Select
+          <div className="md:col-span-2 space-y-1">
+            <Label htmlFor="ingredient-unit" className={labelStyle}>
+              Unit
+            </Label>
+            <CustomSelect
+              defaultValue="UNITS"
               value={newIngredient.unit}
-              onValueChange={(value) =>
+              selectItems={COMMON_UNITS}
+              onChange={(value) =>
                 setNewIngredient({ ...newIngredient, unit: value })
               }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Unit" />
-              </SelectTrigger>
-              <SelectContent>
-                {COMMON_UNITS.map((unit) => (
-                  <SelectItem key={unit} value={unit}>
-                    {unit}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              className="!h-10"
+            />
           </div>
 
           <div className="md:col-span-1 flex items-end">
             <Button
               onClick={addIngredient}
               disabled={!newIngredient.name.trim()}
+              className="bg-gray"
             >
               <Plus className="w-4 h-4" />
             </Button>
@@ -156,16 +153,18 @@ export const IngredientsStep: React.FC<IngredientsStepProps> = ({
           </h3>
 
           <div className="space-y-2">
-            {formData.ingredients.map((ingredient, index) => (
+            {formData.ingredients.map((ingredient) => (
               <div
                 key={ingredient.id}
-                className="flex items-center gap-4 p-3 border rounded-lg bg-card"
+                className="flex items-center gap-4 p-3 border rounded-lg border-gray-200"
               >
                 <GripVertical className="w-4 h-4 text-muted-foreground cursor-grab" />
 
                 <div className="flex-1 grid grid-cols-1 md:grid-cols-12 gap-4">
+                  {/* Ingredient name  */}
                   <div className="md:col-span-6">
                     <Input
+                      className={inputStyles}
                       value={ingredient.name}
                       onChange={(e) =>
                         updateIngredient(ingredient.id, "name", e.target.value)
@@ -174,9 +173,11 @@ export const IngredientsStep: React.FC<IngredientsStepProps> = ({
                     />
                   </div>
 
+                  {/* Amount and Unit  */}
                   <div className="md:col-span-3">
                     <Input
                       value={ingredient.amount}
+                      className={inputStyles}
                       onChange={(e) =>
                         updateIngredient(
                           ingredient.id,
@@ -189,30 +190,24 @@ export const IngredientsStep: React.FC<IngredientsStepProps> = ({
                   </div>
 
                   <div className="md:col-span-2">
-                    <Select
+                    <CustomSelect
+                      defaultValue="UNITS"
                       value={ingredient.unit}
-                      onValueChange={(value) =>
+                      selectItems={COMMON_UNITS}
+                      onChange={(value) =>
                         updateIngredient(ingredient.id, "unit", value)
                       }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Unit" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {COMMON_UNITS.map((unit) => (
-                          <SelectItem key={unit} value={unit}>
-                            {unit}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      className="!h-10"
+                    />
                   </div>
                 </div>
 
+                {/* Remove Ingredient  */}
                 <Button
                   variant="destructive"
                   size="sm"
                   onClick={() => removeIngredient(ingredient.id)}
+                  className="bg-red-500"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>
@@ -233,3 +228,5 @@ export const IngredientsStep: React.FC<IngredientsStepProps> = ({
     </div>
   );
 };
+
+export default IngredientsStep;

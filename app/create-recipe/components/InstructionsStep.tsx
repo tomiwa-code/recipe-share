@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { Button } from "@/lib/ui/Button";
 import { Label } from "@/lib/ui/Label";
 import { Plus, Trash2, GripVertical } from "lucide-react";
-import { RecipeFormDataType } from "@/types/create-recipe.type";
 import { Textarea } from "@/lib/ui/Textarea";
+import { RecipeFormDataType } from "@/types/recipe.type";
 
 interface InstructionsStepProps {
   formData: RecipeFormDataType;
   updateFormData: (updates: Partial<RecipeFormDataType>) => void;
 }
 
-export const InstructionsStep: React.FC<InstructionsStepProps> = ({
+const InstructionsStep: React.FC<InstructionsStepProps> = ({
   formData,
   updateFormData,
 }) => {
@@ -68,11 +68,15 @@ export const InstructionsStep: React.FC<InstructionsStepProps> = ({
         <h3 className="text-lg font-semibold mb-4">Add Cooking Instructions</h3>
 
         {/* Add new instruction form */}
-        <div className="space-y-4 p-4 border rounded-lg bg-muted/20">
-          <div>
-            <Label htmlFor="new-instruction">
+        <div className="space-y-4 p-5 border rounded-lg border-gray-200">
+          <div className="flex flex-col gap-y-1">
+            <Label
+              htmlFor="new-instruction"
+              className="capitalize text-gray-500 text-sm"
+            >
               Step {formData.instructions.length + 1}
             </Label>
+
             <Textarea
               id="new-instruction"
               placeholder="Describe this cooking step in detail..."
@@ -80,13 +84,19 @@ export const InstructionsStep: React.FC<InstructionsStepProps> = ({
               value={newInstruction}
               onChange={(e) => setNewInstruction(e.target.value)}
               onKeyUp={handleKeyPress}
+              className="resize-none border-gray-600"
             />
-            <p className="text-xs text-muted-foreground mt-1">
+
+            <p className="text-xs text-gray-500 mt-2">
               Press Ctrl+Enter to add step
             </p>
           </div>
 
-          <Button onClick={addInstruction} disabled={!newInstruction.trim()}>
+          <Button
+            onClick={addInstruction}
+            disabled={!newInstruction.trim()}
+            className="bg-red-500 text-white"
+          >
             <Plus className="w-4 h-4 mr-2" />
             Add Step
           </Button>
@@ -104,11 +114,11 @@ export const InstructionsStep: React.FC<InstructionsStepProps> = ({
             {formData.instructions.map((instruction, index) => (
               <div
                 key={instruction.id}
-                className="flex gap-4 p-4 border rounded-lg bg-card"
+                className="flex gap-4 p-4 border border-gray-200 rounded-lg"
               >
                 <div className="flex items-start gap-3">
                   <GripVertical className="w-4 h-4 text-muted-foreground cursor-grab mt-3" />
-                  <div className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium flex-shrink-0 mt-2">
+                  <div className="w-8 h-8 rounded-full text-black flex items-center justify-center text-sm font-medium flex-shrink-0 mt-2">
                     {instruction.step}
                   </div>
                 </div>
@@ -121,7 +131,7 @@ export const InstructionsStep: React.FC<InstructionsStepProps> = ({
                     }
                     placeholder="Cooking instruction..."
                     rows={3}
-                    className="resize-none"
+                    className="resize-none border-gray-600"
                   />
                 </div>
 
@@ -150,3 +160,5 @@ export const InstructionsStep: React.FC<InstructionsStepProps> = ({
     </div>
   );
 };
+
+export default InstructionsStep;

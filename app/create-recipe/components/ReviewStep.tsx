@@ -1,73 +1,84 @@
 import React from "react";
 import { Badge } from "@/lib/ui/Badge";
 import { Clock, Users, ChefHat } from "lucide-react";
-import { RecipeFormDataType } from "@/types/create-recipe.type";
+import { RecipeFormDataType } from "@/types/recipe.type";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface ReviewStepProps {
   formData: RecipeFormDataType;
 }
 
-export const ReviewStep: React.FC<ReviewStepProps> = ({ formData }) => {
-  const totalTime = formData.prepTime + formData.cookTime;
-
+const ReviewStep: React.FC<ReviewStepProps> = ({ formData }) => {
   return (
-    <div className="space-y-6">
-      <div>
-        <h3 className="text-lg font-semibold mb-4">Review Your Recipe</h3>
-        <p className="text-muted-foreground">
+    <div className="flex flex-col gap-y-6">
+      {/* Recipe Header */}
+      <div className="flex flex-col items-start gap-y-2">
+        <h3 className="text-lg font-semibold">Review Your Recipe</h3>
+        <p className="text-gray-500 text-sm">
           Please review all the information before publishing your recipe.
         </p>
       </div>
 
-      {/* Recipe Header */}
-      <div className="grid md:grid-cols-2 gap-6">
-        <div>
+      <div className="grid md:grid-cols-2 gap-6 gap-y-4">
+        {/* Recipe Image */}
+        <div className="relative h-64 rounded-lg overflow-hidden">
           {formData.imagePreview && (
-            <img
+            <Image
               src={formData.imagePreview}
               alt={formData.title}
-              className="w-full h-48 object-cover rounded-lg mb-4"
+              width={1000}
+              height={1000}
+              className="w-full h-full object-cover object-center"
             />
           )}
         </div>
 
-        <div className="space-y-4">
-          <div>
-            <h4 className="text-xl font-bold">{formData.title}</h4>
-            <p className="text-muted-foreground mt-2">{formData.description}</p>
+        <div className="flex flex-col gap-y-4">
+          {/* Description  */}
+          <div className="flex flex-col gap-y-2">
+            <h4 className="text-xl font-bold capitalize">{formData.title}</h4>
+            <p className="text-gray-500 text-sm max-w-sm">
+              {formData.description}
+            </p>
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Badge variant="secondary">
+            {/* Cuisine Type: */}
+            <Badge
+              variant="secondary"
+              className="bg-gray-200 py-1 rounded-full text-black"
+            >
               <ChefHat className="w-3 h-3 mr-1" />
               {formData.cuisine}
             </Badge>
+
+            {/* Difficulty Level:  */}
             <Badge
-              variant={
-                formData.difficulty === "easy"
-                  ? "default"
-                  : formData.difficulty === "medium"
-                  ? "secondary"
-                  : "destructive"
-              }
+              className={cn(
+                "py-1 rounded-full font-normal text-black min-w-16",
+                {
+                  "bg-emerald-500": formData.difficulty === "easy",
+                  "bg-yellow-500": formData.difficulty === "medium",
+                  "bg-red-500 text-white": formData.difficulty === "hard",
+                }
+              )}
             >
               {formData.difficulty}
             </Badge>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 text-sm">
-            <div className="text-center">
-              <Clock className="w-4 h-4 mx-auto mb-1 text-muted-foreground" />
+          <div className="flex items-center gap-x-6 text-sm mt-2">
+            {/* Prep Time  */}
+            <div className="text-center flex items-center gap-x-2 text-gray-600">
+              <Clock className="size-4 text-gray-500" />
               <p className="font-medium">{formData.prepTime}m</p>
               <p className="text-muted-foreground">Prep</p>
             </div>
-            <div className="text-center">
-              <Clock className="w-4 h-4 mx-auto mb-1 text-muted-foreground" />
-              <p className="font-medium">{formData.cookTime}m</p>
-              <p className="text-muted-foreground">Cook</p>
-            </div>
-            <div className="text-center">
-              <Users className="w-4 h-4 mx-auto mb-1 text-muted-foreground" />
+
+            {/* Servings  */}
+            <div className="text-center flex items-center gap-x-2 text-gray-600">
+              <Users className="size-4 text-gray-500" />
               <p className="font-medium">{formData.servings}</p>
               <p className="text-muted-foreground">Servings</p>
             </div>
@@ -76,15 +87,16 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({ formData }) => {
       </div>
 
       {/* Ingredients */}
-      <div>
-        <h4 className="text-lg font-semibold mb-3">
+      <div className="flex flex-col gap-y-3">
+        <h4 className="text-lg font-semibold">
           Ingredients ({formData.ingredients.length})
         </h4>
-        <div className="grid md:grid-cols-2 gap-2">
+
+        <div className="grid md:grid-cols-2 gap-x-4 gap-y-4">
           {formData.ingredients.map((ingredient) => (
             <div
               key={ingredient.id}
-              className="flex justify-between items-center py-2 px-3 bg-muted/30 rounded"
+              className="flex justify-between items-center py-2.5 px-4 bg-gray-50 rounded-lg"
             >
               <span>{ingredient.name}</span>
               <span className="text-sm text-muted-foreground">
@@ -96,16 +108,18 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({ formData }) => {
       </div>
 
       {/* Instructions */}
-      <div>
-        <h4 className="text-lg font-semibold mb-3">
+      <div className="flex flex-col gap-y-3">
+        <h4 className="text-lg font-semibold">
           Instructions ({formData.instructions.length} steps)
         </h4>
-        <div className="space-y-4">
+
+        <div className="flex-col flex gap-y-4 max-w-xl w-full">
           {formData.instructions.map((instruction) => (
             <div key={instruction.id} className="flex gap-3">
-              <div className="w-6 h-6 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-medium flex-shrink-0 mt-0.5">
+              <div className="size-8 rounded-full bg-red-400 text-white flex items-center justify-center text-sm font-medium flex-shrink-0 mt-0.5">
                 {instruction.step}
               </div>
+
               <p className="text-sm leading-relaxed">
                 {instruction.instruction}
               </p>
@@ -114,8 +128,8 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({ formData }) => {
         </div>
       </div>
 
-      <div className="border-t pt-4">
-        <p className="text-sm text-muted-foreground">
+      <div className="border-t pt-4 border-dashed border-gray-200">
+        <p className="text-sm text-gray-500">
           By publishing this recipe, you agree to share it with the RecipeShare
           community. You can edit or delete your recipe at any time from your
           profile.
@@ -124,3 +138,5 @@ export const ReviewStep: React.FC<ReviewStepProps> = ({ formData }) => {
     </div>
   );
 };
+
+export default ReviewStep;

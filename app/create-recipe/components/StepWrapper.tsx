@@ -1,15 +1,23 @@
 import React from "react";
 
 import { Progress } from "@/lib/ui/Progress";
-import { StepsType } from "@/types/create-recipe.type";
+import { StepsType } from "@/types/recipe.type";
 
 interface StepsWrapperProps {
   STEPS: StepsType[];
   step: number;
+  setStep: React.Dispatch<React.SetStateAction<1 | 2 | 3 | 4>>;
 }
 
-const StepWrapper = ({ STEPS, step }: StepsWrapperProps) => {
+const StepWrapper = ({ STEPS, step, setStep }: StepsWrapperProps) => {
   const progress = (step / STEPS.length) * 100;
+
+  // Go back to the previous step
+  const handleClick = (id: 1 | 2 | 3 | 4) => {
+    if (id > step) return;
+
+    setStep(id);
+  };
 
   return (
     <div className="mb-8">
@@ -17,11 +25,12 @@ const StepWrapper = ({ STEPS, step }: StepsWrapperProps) => {
         {STEPS.map((item, index) => (
           <div key={item.id} className="flex items-center">
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium select-none ${
                 step >= item.id
-                  ? "bg-red-500 text-foreground"
+                  ? "bg-red-500 text-foreground cursor-pointer"
                   : "bg-muted text-muted-foreground"
               }`}
+              onClick={() => handleClick((index + 1) as 1 | 2 | 3 | 4)}
             >
               {item.id}
             </div>
@@ -38,7 +47,7 @@ const StepWrapper = ({ STEPS, step }: StepsWrapperProps) => {
             </div>
 
             {index < STEPS.length - 1 && (
-              <div className="w-12 sm:w-24 h-px bg-gray mx-4" />
+              <div className="w-12 sm:w-24 h-px bg-gray-300 mx-4" />
             )}
           </div>
         ))}
