@@ -28,11 +28,11 @@ const RatingSummary = () => {
         <div className="flex items-center justify-center gap-6">
           {/* Overall Rating */}
           <div className="flex-1 flex items-center justify-center flex-col text-center gap-y-3">
-            <div className="text-4xl font-bold text-sage-900">
+            <div className="text-2xl md:text-4xl font-bold text-black">
               {averageRating}
             </div>
             <StarRating rating={averageRating} size="lg" />
-            <p className="text-sage-600">{totalReviews} reviews</p>
+            <p className="text-sm md:text-base text-gray-600 font-medium">{totalReviews} reviews</p>
           </div>
 
           {/* Rating Distribution */}

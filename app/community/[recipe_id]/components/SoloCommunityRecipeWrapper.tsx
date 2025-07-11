@@ -8,8 +8,6 @@ interface SoloCommunityRecipeWrapperProps {
   id: string;
 }
 
-// TODO:: Responsiveness - Make the component responsive
-
 const SoloCommunityRecipeWrapper = async ({
   id,
 }: SoloCommunityRecipeWrapperProps) => {

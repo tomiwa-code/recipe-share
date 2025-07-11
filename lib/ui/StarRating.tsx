@@ -23,7 +23,7 @@ const StarRating = ({
   const sizeClasses = {
     sm: "h-3 w-3",
     md: "h-4 w-4",
-    lg: "h-5 w-5",
+    lg: "size-4 md:size-5",
   };
 
   const handleStarClick = (starRating: number) => {

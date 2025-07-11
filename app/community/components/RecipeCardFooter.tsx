@@ -16,7 +16,7 @@ const RecipeCardFooter = ({ recipeId }: RecipeCardFooterProps) => {
   const [openCommentModal, setOpenCommentModal] = React.useState(false);
 
   return (
-    <div className="flex items-center gap-x-8">
+    <div className="w-full justify-around md:w-fit flex items-center gap-x-8">
       <CustomTooltip
         icon={<Target className="size-6 text-gray-700" />}
         text="Reviews"

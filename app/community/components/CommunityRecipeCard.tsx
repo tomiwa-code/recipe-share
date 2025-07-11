@@ -29,7 +29,7 @@ const CommunityRecipeCard = ({ idx, className }: CommunityRecipeCardProps) => {
         className
       )}
     >
-      <div className="flex gap-x-6">
+      <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-x-6">
         {/* Recipe Image  */}
         <Link href={"/community/1"}>
           <div className="size-44 rounded-full relative shadow-lg transition-all duration-300 ease-in-out">
@@ -45,7 +45,7 @@ const CommunityRecipeCard = ({ idx, className }: CommunityRecipeCardProps) => {
           </div>
         </Link>
 
-        <div className="w-full flex flex-col gap-y-4">
+        <div className="w-full flex flex-col gap-y-4 mt-5 md:mt-0">
           <div className="flex items-center justify-between w-full">
             {/* Recipe Title and Rating  */}
             <div className="flex flex-col gap-y-2">

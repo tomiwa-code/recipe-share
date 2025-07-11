@@ -2,8 +2,6 @@ import BackgroundEffect from "@/lib/ui/BackgroundEffect";
 import React from "react";
 import RecipeCardWrapper from "./RecipeCardWrapper";
 
-// TODO:: Responsiveness - Make the component responsive
-
 const CommunityPageWrapper = () => {
   return (
     <main className="min-h-screen w-full relative overflow-x-hidden">

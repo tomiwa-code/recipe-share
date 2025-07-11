@@ -22,12 +22,7 @@ const ReviewCard = ({ review, className }: ReviewCardProps) => {
       : `${review.comment.substring(0, 300)}...`;
 
   return (
-    <Card
-      className={cn(
-        "shadow-none border-gray-300",
-        className
-      )}
-    >
+    <Card className={cn("shadow-none border-gray-300", className)}>
       <CardContent className="px-6">
         <div className="space-y-4">
           {/* Header */}
@@ -40,14 +35,15 @@ const ReviewCard = ({ review, className }: ReviewCardProps) => {
                 </AvatarFallback>
               </Avatar>
 
+              {/* User name, ratings and date  */}
               <div className="flex flex-col gap-y-1 text-sm text-sage-600">
                 <div className="flex md:items-center flex-col md:flex-row gap-x-2">
-                  <span className="text-base font-medium text-black">
+                  <span className="text-sm md:text-base font-medium text-black">
                     {review.user.name}
                   </span>
 
-                  <span>•</span>
-                  <span>{formatRelativeTime(review.createdAt)}</span>
+                  <span className="hidden md:block">•</span>
+                  <span className="text-gray-500 font-normal text-xs md:text-sm">{formatRelativeTime(review.createdAt)}</span>
                 </div>
 
                 <StarRating rating={review.rating} size="sm" />
