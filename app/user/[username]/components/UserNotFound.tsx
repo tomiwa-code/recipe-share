@@ -23,8 +23,8 @@ const UserNotFound = () => {
       </h2>
 
       <p className="text-sm text-center text-gray-500 max-w-sm w-full mx-auto">
-        We couldn't find the user you're looking for. The profile may have been
-        removed or the username changed.
+        We couldn&apos;t find the user you&apos;re looking for. The profile may
+        have been removed or the username changed.
       </p>
 
       <div className="w-full flex flex-col md:flex-row gap-y-3 items-center justify-center gap-x-4 mt-3 text-gray-700">

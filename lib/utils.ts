@@ -61,10 +61,12 @@ export const extractUniqueId = (url: string) => {
  * @returns Formatted date string
  */
 export const formatDate = (isoString: string): string => {
+  if (!isoString) return "No date provided";
+
   try {
     return format(parseISO(isoString), "dd MMMM yyyy");
   } catch (error) {
-    console.error("Invalid date format:", isoString);
+    console.error("Invalid date format:", error);
     return "Invalid date";
   }
 };
