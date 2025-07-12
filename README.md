@@ -4,7 +4,7 @@
 ```bash
 # Clone repository
 git clone https://github.com/tomiwa-code/recipe-share.git
-cd recipe-share/
+cd recipe-share
 ```
 
 # Install dependencies
