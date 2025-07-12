@@ -5,40 +5,32 @@
 # Clone repository
 git clone https://github.com/tomiwa-code/recipe-share.git
 cd recipe-share/frontend
+```
 
 # Install dependencies
 ```bash
 npm install
 ```
 
-# Start development server
+## Start development server
 ```bash
 npm run dev
 ```
 
-# Access at http://localhost:3000
+### Access at http://localhost:3000
 
-#Endpoints
+## Endpoints
 
-## Landing page
-### / 
+### Landing page: (/)
 
-## auth
-### /sign-in
-### /sign-up
+### auth: (auth/sign-in, auth/sign-up)
 
-## community
-### /[recipe_id]
-### /
+### community: (community/[recipe_id], /community) 
 
-## create-recipe
-### /
+### create-recipe: (/create-recipe)
 
-## recipe
-### /[id]
+### recipe: (/recipe/[id])
 
-## recipes
-### /
+### recipes: (/recipes)
 
-## users
-### /[username] example: @tomiwacode
+### user: (user/[username] example: @tomiwacode)
